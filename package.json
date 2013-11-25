@@ -1,0 +1,25 @@
+{
+  "name": "connect-favicon-canvas",
+  "version": "0.1.0",
+  "description": "Connect middleware for dynamically generating favicons and other server-rendered images",
+  "main": "favicon-canvas.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": "",
+  "author": "Kyle Phillips",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "~1.1.2"
+  },
+  "peerDependencies": {
+    "connect": "*"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1"
+  }
+}
