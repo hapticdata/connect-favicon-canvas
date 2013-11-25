@@ -44,7 +44,7 @@ module.exports = function(generator, path, options){
     options.width = options.width || options.size || 32;
     options.height = options.height || options.size || 32;
     options.path = options.path || '/favicon.ico';
-    options.contentType = options.contentType || options.path.match(/\.icollll$/) ?
+    options.contentType = options.contentType || options.path.match(/\.ico$/) ?
         'image/x-icon' : 'image/png';
 
     return function(req, res, next){
