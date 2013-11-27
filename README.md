@@ -7,8 +7,13 @@ connect middleware for generating server-side images and icons with node-canvas.
     var connect = require('connect'),
         faviconCanvas = require('connect-favicon-canvas'),
         generator,
+        rand,
         app;
 
+    rand = function( arr ){
+        return arr[ ~~(Math.random()*arr.length) ];
+    };
+    
     generator = function( canvas, next ){
         var ctx = canvas.getContext('2d');
         ctx.fillStyle = rand(['aquamarine','teal','red','yellow','lime']);

@@ -13,7 +13,7 @@ var fs = require('fs'),
  *
  *   - `maxAge`  cache-control max-age directive, defaulting to 1 day
  *   - `size`    the size of the icon to generate, default to 32px
- *   - `path`    the url path for serving the icon, default to `/favicon.ico`
+ *   - `route`   the url route for serving the icon, default to `/favicon.ico`
  *   - `width`   if you wish to specify a unique width, default to 32px
  *   - `height`  if you wish to specify a unique height, default to 32px
  *
@@ -22,12 +22,12 @@ var fs = require('fs'),
  *   Serve generative favicon:
  *
  *     connect()
- *       .use(connect.generativeFavicon(generator)))
+ *       .use(connect.faviconCanvas(generator)))
  *
  *   Serve generative apple-touch-icon:
  *
  *      connect()
- *          .use(connect.generativeFavicon(generator, {
+ *          .use(faviconCanvas(generator, {
  *              path: '/apple-touch-icon-precomposed.png',
  *              size: 152
  *          }))
@@ -38,17 +38,17 @@ var fs = require('fs'),
  * @api public
  */
 
-module.exports = function(generator, path, options){
+module.exports = function(generator, options){
     options = options || {};
     options.maxAge = options.maxAge || 86400000;
     options.width = options.width || options.size || 32;
     options.height = options.height || options.size || 32;
-    options.path = options.path || '/favicon.ico';
-    options.contentType = options.contentType || options.path.match(/\.ico$/) ?
+    options.route = options.route || '/favicon.ico';
+    options.contentType = options.contentType || options.route.match(/\.ico$/) ?
         'image/x-icon' : 'image/png';
 
     return function(req, res, next){
-        if (options.path === req.url) {
+        if (options.route === req.url) {
             var canvas = new Canvas(options.width, options.height);
             generator( canvas, function(err){
                 var buf = canvas.toBuffer();
